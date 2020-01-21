@@ -6,7 +6,7 @@
 
 ## Features
 
-This ** WEB UIKIT** provides a simple way of setting up a modern web development environment. Here is a list of the current features:
+This **WEB UIKIT** provides a simple way of setting up a modern web development environment. Here is a list of the current features:
  
 -  [**GULP 4**](https://gulpjs.com/) Automate and enhance your workflow.
 -  [**Nunjucks**](https://mozilla.github.io/nunjucks/) A rich and powerful templating language for JavaScript.
