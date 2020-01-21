@@ -1,0 +1,6 @@
+{
+    "base": {
+        "static": "./static/",
+        "assets": "./assets/"
+    }
+}
