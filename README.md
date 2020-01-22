@@ -53,7 +53,7 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 			├── .jshintrc
 			├── .jsbeautifyrc
 			├── package.json
-			├── path.config
+			├── path.config.dump
 			├── README.md
 	```
 
@@ -101,7 +101,7 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 
 	if you want the results of the static compile to be used in another directory or project, we provide a few easy steps to copy all files and directories that are in the `static` directory to the directory that you want to paste.
 
-	- duplicate the `path.config` file and rename it to `path.config.js`
+	- duplicate the `path.config.dump` file and rename it to `path.config.js`
 	- open the `path.config.js` file, then you can adjust the directory destination you want to paste by filling in the `path` in the` DIR_TOCOPY` variable.
 	- untuk proses penggabungan direktori static, anda dapat menggunakan run script: 
 		```
@@ -114,4 +114,8 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 		**for production `env`**
 		```
 		$ yarn merge-build
+		```
+		or
+		```
+		$ npm run merge-build
 		```
