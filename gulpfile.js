@@ -32,8 +32,7 @@
   // -- config
   const package = require('./package.json');
   const config = require('./gulpfile.config');
-  const pathConf = require('./path.config.js');
-  const siteConf = require('./site.config.js');
+  const siteConf = require('./site.config');
 
   // -- Styles
   const sass = require('gulp-sass');
@@ -233,6 +232,8 @@
   // -- Merge of static build to Portal Project
 
   gulp.task('merge-static', done => {
+
+      const pathConf = require('./path.config');
       const directory = pathConf.paths.outroot + '' + pathConf.paths.dir_toCopy;
 
       directoryExists(directory, (error, result) => {
