@@ -32,8 +32,8 @@
   // -- config
   const package = require('./package.json');
   const config = require('./gulpfile.config');
-  const pathConf = require('./path.config');
-  const siteConf = require('./site.config');
+  const pathConf = require('./path.config.js');
+  const siteConf = require('./site.config.js');
 
   // -- Styles
   const sass = require('gulp-sass');
