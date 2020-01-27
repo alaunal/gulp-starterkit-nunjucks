@@ -33,6 +33,7 @@
   const package = require('./package.json');
   const config = require('./gulpfile.config');
   const pathConf = require('./path.config');
+  const siteConf = require('./site.config');
 
   // -- Styles
   const sass = require('gulp-sass');
@@ -54,6 +55,11 @@
   const plumber = require('gulp-plumber');
   const babel = require('gulp-babel');
   const strip = require('gulp-strip-comments');
+  const rollup = require('gulp-better-rollup');
+  const rollupBabel = require('rollup-plugin-babel');
+  const rollupMinify = require('rollup-plugin-babel-minify');
+  const rollupResolve = require('@rollup/plugin-node-resolve');
+  const rollupCommonjs = require('@rollup/plugin-commonjs');
 
 
   // ---------------------------------------------------
@@ -63,6 +69,26 @@
   // -- Environment configuration.
 
   const isProd = process.env.NODE_ENV === 'production';
+
+
+  // -- fetch command line arguments
+
+  const arg = (argList => {
+      let arg = {},
+          a, opt, thisOpt, curOpt;
+      for (a = 0; a < argList.length; a++) {
+          thisOpt = argList[a].trim();
+          opt = thisOpt.replace(/^\-+/, '');
+          if (opt === thisOpt) {
+              if (curOpt) arg[curOpt] = opt;
+              curOpt = null;
+          } else {
+              curOpt = opt;
+              arg[curOpt] = true;
+          }
+      }
+      return arg;
+  })(process.argv);
 
   // ---------------------------------------------------
   // -- GULP TASKS
@@ -87,10 +113,11 @@
           server: {
               baseDir: ['build']
           },
-          port: 8080,
+          port: arg.port ? Number(arg.port) : 8080,
           open: true
       });
   });
+  
 
   // -- Scss of styles task runner compile
 
@@ -100,9 +127,10 @@
 
       pump([
           gulp.src([config.paths.styles.input]),
-          (isProd ? noop() : changed(config.paths.styles.output, {
-              extension: '.css'
-          })),
+          plumber(),
+        //   (isProd ? noop() : changed(config.paths.styles.output, {
+        //       extension: '.css'
+        //   })),
           (isProd ? noop() : sourcemaps.init()),
           sass({
               outputStyle: 'compressed'
@@ -121,92 +149,52 @@
           header(config.header.main, {
               package: package
           }),
-          gulp.dest(config.paths.styles.output)
+          gulp.dest(config.paths.styles.output),
+          browserSync.stream()
       ]);
 
       done();
   });
 
-  // -- Scripts js vendors, global, & apps old version
+  // -- Script js use rollup
 
-  gulp.task('compile-js-vendor', done => {
+  gulp.task('scripts-compile', done => {
 
       if (!config.settings.scripts) return done();
 
-      const VENDORS_LIBS = [
-          config.paths.scripts.dir + 'vendors/jquery.js',
-          //   config.paths.scripts.dir + 'vendors/lazyload.min.js',
-          //   config.paths.scripts.dir + 'vendors/slick.min.js',
-          config.paths.scripts.dir + 'vendors/parsley.js',
+      const rollupPugins = [
+          rollupResolve({
+              browser: true,
+          }),
+          rollupCommonjs(),
+          rollupBabel({
+              exclude: './node_modules/**'
+          })
       ];
 
-      pump([
-          gulp.src(VENDORS_LIBS),
-          plumber(),
-          (isProd ? noop() : newer(config.paths.scripts.output + 'libs.js')),
-          (isProd ? noop() : sourcemaps.init()),
-          babel(),
-          concat('libs.js'),
-          terser(isProd ? config.uglify.prod : config.uglify.dev),
-          optimizejs(),
-          strip(),
-          (isProd ? noop() : sourcemaps.write('../maps')),
-          header(config.header.main, {
+      return gulp.src(config.paths.scripts.dir + '*.js')
+          .pipe(isProd ? noop() : sourcemaps.init())
+          .pipe(plumber())
+        //   .pipe((isProd ? noop() : changed(config.paths.scripts.output, {
+        //       extension: '.js'
+        //   })))
+          .pipe(rollup({
+              plugins: rollupPugins
+          }, {
+              format: 'iife',
+              name: 'scripts'
+          }))
+          //   .pipe(babel())
+          .pipe(terser(isProd ? config.uglify.prod : config.uglify.dev))
+          .pipe(optimizejs())
+          .pipe(strip())
+          .pipe((isProd ? noop() : sourcemaps.write('../maps')))
+          .pipe(header(config.header.main, {
               package: package
-          }),
-          gulp.dest(config.paths.scripts.output)
-      ]);
+          }))
+          .pipe(gulp.dest(config.paths.scripts.output))
+          .pipe(browserSync.stream());
 
-      done();
-  });
-
-  gulp.task('compile-js-global', done => {
-
-      if (!config.settings.scripts) return done();
-
-      pump([
-          gulp.src(config.paths.scripts.dir + '/global/*.js'),
-          plumber(),
-          (isProd ? noop() : newer(config.paths.scripts.output + 'global.js')),
-          (isProd ? noop() : sourcemaps.init()),
-          babel(),
-          concat('global.js'),
-          terser(isProd ? config.uglify.prod : config.uglify.dev),
-          optimizejs(),
-          strip(),
-          (isProd ? noop() : sourcemaps.write('../maps')),
-          header(config.header.main, {
-              package: package
-          }),
-          gulp.dest(config.paths.scripts.output)
-      ]);
-
-      done();
-  });
-
-  gulp.task('compile-js-app', done => {
-
-      if (!config.settings.scripts) return done();
-
-      pump([
-          gulp.src(config.paths.scripts.dir + 'apps/*.js'),
-          plumber(),
-          (isProd ? noop() : changed(config.paths.scripts.output, {
-              extension: '.js'
-          })),
-          (isProd ? noop() : sourcemaps.init()),
-          babel(),
-          terser(isProd ? config.uglify.prod : config.uglify.dev),
-          optimizejs(),
-          strip(),
-          (isProd ? noop() : sourcemaps.write('../maps')),
-          header(config.header.main, {
-              package: package
-          }),
-          gulp.dest(config.paths.scripts.output)
-      ]);
-
-      done();
   });
 
   // -- Nunjucks html template compile 
@@ -216,14 +204,9 @@
       if (!config.settings.copy) return done();
 
       return gulp.src(config.paths.public.input)
-          .pipe(
-              changed(config.paths.build, {
-                  extension: '.html'
-              })
-          )
           .pipe(plumber())
           .pipe(data(function() {
-              return JSON.parse(fs.readFileSync(config.paths.public.data));
+              return siteConf.data;
           }))
           .pipe(nunjucksRender({
               path: [config.paths.html]
@@ -250,17 +233,17 @@
   // -- Merge of static build to Portal Project
 
   gulp.task('merge-static', done => {
-    const directory = pathConf.paths.outroot + '' + pathConf.paths.dir_toCopy;
+      const directory = pathConf.paths.outroot + '' + pathConf.paths.dir_toCopy;
 
-    directoryExists(directory, (error, result) => {
-        if (result) {
-            return gulp.src(config.paths.output + '**/*')
-                .pipe(gulp.dest(directory));
-        }
-    });
+      directoryExists(directory, (error, result) => {
+          if (result) {
+              return gulp.src(config.paths.output + '**/*')
+                  .pipe(gulp.dest(directory));
+          }
+      });
 
-    done();
-});
+      done();
+  });
 
   // -- Compile task runner
 
@@ -268,11 +251,7 @@
       runSequence(
           'clear-cache',
           'compile-styles',
-          [
-              'compile-js-vendor',
-              'compile-js-global',
-              'compile-js-app'
-          ],
+          'scripts-compile',
           'copy-static',
           'compile-html',
           callback
@@ -282,31 +261,26 @@
   // -- Merge task runner
 
   gulp.task('gulp:merge', function(callback) {
-    runSequence(
-        'clean',
-        'clear-cache',
-        'gulp:compile',
-        'merge-static',
-        callback
-    );
-});
+      runSequence(
+          'clean',
+          'gulp:compile',
+          'merge-static',
+          callback
+      );
+  });
 
   // -- watch task runner
 
-  gulp.task('gulp:watch', () => {
-      const watch = [
-          config.paths.styles.dir,
-          config.paths.scripts.dir,
-          config.paths.html
-      ];
+  gulp.task('gulp:watch', done => {
+      gulp.watch(config.paths.src, gulp.series('gulp:compile')).on('change', browserSync.reload);
 
-      gulp.watch(watch, gulp.series('gulp:compile')).on('change', browserSync.reload);
+      done();
   });
 
   // -- task serve
 
-  gulp.task('gulp:serve', gulp.series('gulp:compile', 'copy-static', gulp.parallel('runServer', 'gulp:watch')));
+  gulp.task('gulp:serve', gulp.series('gulp:compile', gulp.parallel('runServer', 'gulp:watch')));
 
   // -- task default
 
-  gulp.task('default', gulp.series('gulp:compile', gulp.parallel('runServer')));
+  gulp.task('default', gulp.series('clean', 'gulp:compile', gulp.parallel('runServer')));

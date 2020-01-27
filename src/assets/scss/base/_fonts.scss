@@ -1,0 +1,17 @@
+@each $key, $val in $font-colection {
+
+    @font-face {
+      font-family: '#{$val}';
+      src: url($font-paths + '#{$val}.eot'); /* IE9 Compat Modes */
+      src: url($font-paths + '#{$val}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+           url($font-paths + '#{$val}.woff2') format('woff2'), /* Super Modern Browsers */
+           url($font-paths + '#{$val}.woff') format('woff'), /* Pretty Modern Browsers */
+           url($font-paths + '#{$val}.ttf')  format('truetype'), /* Safari, Android, iOS */
+           url($font-paths + '#{$val}.svg#svgFontName') format('svg'); /* Legacy iOS */
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  
+  }
+  

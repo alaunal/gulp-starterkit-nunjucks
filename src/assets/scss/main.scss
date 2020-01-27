@@ -1,3 +1,21 @@
-body {
-    color: #000;
-}
+// -- BASE OF STYLES
+@import "base/variables";
+@import "base/mixins";
+@import "base/fonts";
+@import "base/reset";
+@import "base/typography";
+@import "base/modifier";
+
+
+// -- VENDORS PUT HERE
+@import "vendors/bootstrap/bootstrap-custom";
+
+
+// -- OBJECTS OF STYLES
+
+
+// -- COMPONENTS OF STYLES
+@import "components/clock";
+
+
+// -- HELPERS OF STYLES

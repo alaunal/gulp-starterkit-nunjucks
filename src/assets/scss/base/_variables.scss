@@ -1,0 +1,54 @@
+// -- COLOR VARIABLE
+:root {
+    --base-color-black100: #000000;
+    --base-color-black80: #222222;
+    --base-color-black70: #666666;
+    --base-color-black60: #888888;
+    --base-color-black50: #c4c4c4;
+    --base-color-black40: #CCCCCC;
+    --base-color-black30: #dddddd;
+    --base-color-black20: #f7f7f7;
+    --base-color-white100: #ffffff;
+    --base-color-orange100: #ff8731;
+    --base-color-orange40: #ffb887;
+    --base-color-orange60: #ff8731;
+    --base-color-blue100: #009ce5;
+    --base-color-red100: #ed4959;
+    --base-color-green100: #26c195;
+    --base-color-yellow100: #fdc849;
+  }
+  
+  // -- TYPOGRAPHY VARIABLE
+  
+  $font-base-size: 16px;
+  $font-base-line-height: 1.5em !default;
+  $font-scale: 1.414 !default;
+  
+  $font-paths: "/static/fonts/roboto/";
+  $icon-paths: "/static/fonts/icons/";
+  $font-colection: (
+    Black: "Roboto-Black",
+    Bold: "Roboto-Bold",
+    Regular: "Roboto-Regular",
+    Light: "Roboto-Light",
+    thin: "Roboto-Thin",
+    medium: "Roboto-Medium"
+  ) !default;
+  
+  $font-fm-base: "Roboto-Regular", Arial, sans-serir;
+  $font-fm-bold: "Roboto-Bold", Arial, sans-serir;
+  $font-fm-black: "Roboto-Black", Arial, sans-serir;
+  $font-fm-medium: "Roboto-Medium", Arial, sans-serir;
+  $font-fm-light: "Roboto-Light", Arial, sans-serir;
+  $font-fm-thin: "Roboto-Thin", Arial, sans-serir;
+  
+  $paragraph-color: var(--base-color-black80);
+  $paragraph-size: 16px;
+  $paragraph-line-height: $font-base-line-height;
+  $paragraph-margin: 16px;
+  
+  $header-color: var(--base-color-black80);
+  $header-size: 36px;
+  $header-line-height: 1.25em;
+  $header-margin: $paragraph-margin * 1.2;
+  

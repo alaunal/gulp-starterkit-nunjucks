@@ -64,9 +64,10 @@ const PATHS = {
     libs: LIBS,
     build: BUILD,
     html: HTML,
+    src: SRC,
     styles: {
         dir: ASSETS + 'scss/',
-        input: ASSETS + 'scss/*.{scss,sass}',
+        input: ASSETS + 'scss/**/*.scss',
         output: STATIC + 'css/'
     },
     scripts: {
@@ -80,7 +81,7 @@ const PATHS = {
             '!' + HTML + 'templates/**'
         ],
         output: BUILD,
-        data: './data.config.json',
+        data: './data.config.js',
     }
 };
 

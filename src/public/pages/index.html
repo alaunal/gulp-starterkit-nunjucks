@@ -1,20 +1,14 @@
 {% extends "templates/layouts/container.html" %}
 
-{% block body %}
-<div class="jumbotron">
-  <div class="container">
-    <h1>Aspal - GOJEK Web</h1>
-    <h2>testing reload</h2>
-    <p>sebuah perjalanan panjang seperti jalanan aspal. <em>asli atau palsu</em> as known as aspal, recently added</p>
-    <p>dengan Lazy(Load)</p>
-    <ul>
-      <li><a href="gojek">GOJEK v3</a></li>    
-      <li><a href="gocareer">GO Career</a></li>
-      <li><a href="ramadhan">Ramadhan Webview (mobile version only)</a></li>
-      <li><a href="luckydraw">Lucky Draw (desktop version only)</a></li>
-      <li><a href="v4">GOJEK v4</a></li>
-      <li><a href="v4/blog">BLOG v4</a></li>
-    </ul>
+{% block content %}
+  <div class="c-clock">
+    <div class="container">
+      <div class="row align-items-center justify-content-center c-clock__content">
+        <div class="col-auto">
+          <div class="c-clock__time" id="js-clock">00:00:00</div>
+          <p class="c-clock__copyright">&copy; copyright ak-code 2020 | hex: <span id="js-hex"></span></p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 {% endblock %}

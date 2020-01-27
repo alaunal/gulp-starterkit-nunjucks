@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html class="no-js">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#8dc449"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Aspal - GOJEK Web container</title>
+    <title>{{ base.title }}</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+
+    {% block extra_meta %}{% endblock extra_meta %}
+    {% block extra_head %}{% endblock extra_head %}
+
+    <link rel="stylesheet" href="{{ base.static }}css/main.css?rev={{ base.revid }}">
+
+    {% block extra_style %}{% endblock extra_style %}
   </head>
 
   <body>
-    {% block body %}{% endblock %}
+    {% block content %}{% endblock content %}
 
-    {% block scripts %}{% endblock %}
+    {% block base_scripts %}
+      <script src="{{ base.static }}js/main.js?rev={{ base.revid }}" defer></script>
+    {% endblock base_scripts %}
+    {% block extra_scripts %}{% endblock extra_scripts %}
+
   </body>
 </html>

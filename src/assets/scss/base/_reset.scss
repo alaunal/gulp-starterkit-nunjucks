@@ -1,0 +1,276 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+
+::before,
+::after {
+    text-decoration: inherit;
+    vertical-align: inherit;
+}
+
+:root {
+    font-size: 16px;
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+
+html {
+    cursor: default;
+    line-height: 1.15;
+    -moz-tab-size: 4;
+    tab-size: 4;
+    -webkit-tap-highlight-color: transparent;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    word-break: break-word;
+    -webkit-tap-highlight-color: rgba(var(--base-color-black100), 0);
+}
+
+/**
+ * Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+ */
+
+body {
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--base-color-black100);
+    text-align: left; // 3
+    background-color: var(--base-color-white100); // 2
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+figcaption,
+figure,
+main {
+    display: block;
+}
+
+/**
+ * Add the correct margin in IE 8.
+ */
+figure {
+    margin: 1em 40px;
+}
+
+hr {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+/**
+ * Add the correct display in IE 9-.
+ */
+audio,
+video {
+    display: inline-block;
+}
+
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+img {
+    border-style: none;
+    max-width: 100%;
+}
+
+img:not([src]):not([srcset]) {
+    visibility: hidden;
+}
+
+img {
+    &[src=""] {
+        visibility: hidden;
+    }
+    &.lazy {
+        &.error {
+            visibility: hidden;
+        }
+    }
+}
+
+/*
+Fixes the Firefox anomaly while images are loading
+*/
+@-moz-document url-prefix() {
+    img:-moz-loading {
+        visibility: hidden;
+    }
+}
+
+
+/**
+* Hide the overflow in IE.
+*/
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/**
+ * Add the correct display in IE 10-.
+ */
+[hidden] {
+    display: none;
+}
+
+[aria-hidden="false"][hidden] {
+    display: initial;
+}
+
+[aria-hidden="false"][hidden]:not(:focus) {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}
+
+[aria-disabled="true"],
+[disabled] {
+    cursor: not-allowed;
+}
+
+[aria-controls] {
+    cursor: pointer;
+}
+
+[aria-busy="true"] {
+    cursor: progress;
+}
+
+[tabindex] {
+    outline: 0;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: $font-fm-base;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+button,
+input {
+    overflow: visible;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+textarea {
+    overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+
+[type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+}
+
+::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.54;
+}
+
+/**
+ * 1. Correct the inability to style upload buttons in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+}

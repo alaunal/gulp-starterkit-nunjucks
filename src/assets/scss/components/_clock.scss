@@ -1,0 +1,24 @@
+.c-clock {
+    position: relative;
+    background-color: var(--base-color-black80);
+    transition: background-color 0.5s ease;
+
+    &__content {
+        height: 100vh;
+    }
+
+    &__time {
+        font-size: 9.5rem;
+        font-family: $font-fm-thin;
+        line-height: 1.5;
+        color: var(--base-color-white100);
+    }
+
+    &__copyright {
+        font-size: 1rem;
+        font-family: $font-fm-thin;
+        line-height: 1.5;
+        color: var(--base-color-white100);
+        text-align: center;
+    }
+}
