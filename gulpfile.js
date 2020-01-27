@@ -283,4 +283,4 @@
 
   // -- task default
 
-  gulp.task('default', gulp.series('clean', 'gulp:compile', gulp.parallel('runServer')));
+  gulp.task('default', gulp.series('clean', 'gulp:compile'));
