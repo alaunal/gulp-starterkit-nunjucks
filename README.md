@@ -13,7 +13,7 @@ This **WEB UIKIT** provides a simple way of setting up a modern web development 
 -  [**ES2015 Babel**](https://babeljs.io/) transpiler that allows you writing JS Code in ES2015/ES6 style.
 -  [**Sass**](http://sass-lang.com/): CSS pre-processor with [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer).
 -  [**Browsersync**](https://browsersync.io/) with Live reload.
-- Minifies and optimize your javascript.
+-  Minifies and optimize your javascript.
 
 
 ## Requirements
@@ -111,7 +111,9 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 		```
 		$ yarn merge-dev
 		```
-		**for production `env`**
+
+		for production `env`
+		
 		```
 		$ yarn merge-build
 		```
