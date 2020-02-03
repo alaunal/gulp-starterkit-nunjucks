@@ -50,13 +50,11 @@
 
   // -- scripts
   const terser = require('gulp-terser');
-  const optimizejs = require('gulp-optimize-js');
   const plumber = require('gulp-plumber');
   const babel = require('gulp-babel');
   const strip = require('gulp-strip-comments');
   const rollup = require('gulp-better-rollup');
   const rollupBabel = require('rollup-plugin-babel');
-  const rollupMinify = require('rollup-plugin-babel-minify');
   const rollupResolve = require('@rollup/plugin-node-resolve');
   const rollupCommonjs = require('@rollup/plugin-commonjs');
 
@@ -167,8 +165,8 @@
           }),
           rollupCommonjs(),
           rollupBabel({
-              exclude: './node_modules/**'
-          })
+              exclude: 'node_modules/**'
+          }),
       ];
 
       return gulp.src(config.paths.scripts.dir + '*.js')
@@ -185,7 +183,6 @@
           }))
           //   .pipe(babel())
           .pipe(terser(isProd ? config.uglify.prod : config.uglify.dev))
-          .pipe(optimizejs())
           .pipe(strip())
           .pipe((isProd ? noop() : sourcemaps.write('../maps')))
           .pipe(header(config.header.main, {

@@ -35,6 +35,7 @@
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.7",
+    "core-js": "^2.6.11",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
     "directory-exists": "^2.0.1",
@@ -55,7 +56,6 @@
     "gulp-newer": "^1.4.0",
     "gulp-noop": "^1.0.0",
     "gulp-nunjucks-render": "^2.2.3",
-    "gulp-optimize-js": "^1.1.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
@@ -65,13 +65,7 @@
     "gulp4-run-sequence": "^1.0.0",
     "pump": "^3.0.0",
     "rollup": "^1.29.1",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-babel-minify": "^9.1.1",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-stream": "^1.24.1",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "rollup-plugin-babel": "^4.3.3"
   },
   "engines": {
     "node": ">= 10.x",
