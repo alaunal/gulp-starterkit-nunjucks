@@ -7,7 +7,8 @@
 ## Features
 
 This **WEB UIKIT** provides a simple way of setting up a modern web development environment. Here is a list of the current features:
- 
+
+-  [**gulp-better-rollup**](https://www.npmjs.com/package/gulp-better-rollup) A Gulp plugin for Rollup ES6 Bundler.
 -  [**GULP 4**](https://gulpjs.com/) Automate and enhance your workflow.
 -  [**Nunjucks**](https://mozilla.github.io/nunjucks/) A rich and powerful templating language for JavaScript.
 -  [**ES2015 Babel**](https://babeljs.io/) transpiler that allows you writing JS Code in ES2015/ES6 style.
@@ -25,17 +26,17 @@ This should be installed on your computer in order to get up and running:
 
 > If you've previously installed gulp globally, run `npm rm --global` gulp before following these instructions.
 
-  
+
 
 ## Usage
 
 As a prerequisite it's assumed you have `npm` or `yarn` installed.
 
-  
+
 
 1.  **Clone Repo**
 
-	Make sure you have a **GULP STARTER-KIT** clone repository. 
+	Make sure you have a **GULP STARTER-KIT** clone repository.
 	```
 	git@github.com:alaunal/gulp-starter-kit.git
 	```
@@ -86,7 +87,7 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 
 	> We have two environment build tasks in the development process or for deployment production.
 
-  
+
 
 	**Development Build**
 
@@ -103,7 +104,7 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 
 	- duplicate the `path.config.dump` file and rename it to `path.config.js`
 	- open the `path.config.js` file, then you can adjust the directory destination you want to paste by filling in the `path` in the` DIR_TOCOPY` variable.
-	- untuk proses penggabungan direktori static, anda dapat menggunakan run script: 
+	- untuk proses penggabungan direktori static, anda dapat menggunakan run script:
 		```
 		$ npm run merge-dev
 		```
