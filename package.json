@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp gulp:compile",
-    "build": "NODE_ENV=production gulp gulp:compile",
+    "build": "NODE_ENV=production gulp",
     "merge-dev": "gulp gulp:merge",
     "merge-build": "NODE_ENV=production  gulp gulp:merge",
     "serve": "gulp gulp:serve",

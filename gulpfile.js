@@ -93,7 +93,7 @@
 
   // -- clean of build dir
 
-  gulp.task('clean', () => del([config.paths.build]));
+  gulp.task('clean', () => del(['./build']));
 
   // -- clean of cache
 
@@ -114,7 +114,7 @@
           open: true
       });
   });
-  
+
 
   // -- Scss of styles task runner compile
 
@@ -125,9 +125,9 @@
       pump([
           gulp.src([config.paths.styles.input]),
           plumber(),
-        //   (isProd ? noop() : changed(config.paths.styles.output, {
-        //       extension: '.css'
-        //   })),
+          //   (isProd ? noop() : changed(config.paths.styles.output, {
+          //       extension: '.css'
+          //   })),
           (isProd ? noop() : sourcemaps.init()),
           sass({
               outputStyle: 'compressed'
@@ -142,7 +142,7 @@
           ]),
           csso(),
           cleanCss(),
-          (isProd ? noop() : sourcemaps.write('../maps')),
+          (isProd ? noop() : sourcemaps.write('./maps')),
           header(config.header.main, {
               package: package
           }),
@@ -172,9 +172,9 @@
       return gulp.src(config.paths.scripts.dir + '*.js')
           .pipe(isProd ? noop() : sourcemaps.init())
           .pipe(plumber())
-        //   .pipe((isProd ? noop() : changed(config.paths.scripts.output, {
-        //       extension: '.js'
-        //   })))
+          //   .pipe((isProd ? noop() : changed(config.paths.scripts.output, {
+          //       extension: '.js'
+          //   })))
           .pipe(rollup({
               plugins: rollupPugins
           }, {
@@ -184,7 +184,7 @@
           //   .pipe(babel())
           .pipe(terser(isProd ? config.uglify.prod : config.uglify.dev))
           .pipe(strip())
-          .pipe((isProd ? noop() : sourcemaps.write('../maps')))
+          .pipe((isProd ? noop() : sourcemaps.write('./maps')))
           .pipe(header(config.header.main, {
               package: package
           }))
@@ -269,15 +269,27 @@
 
   // -- watch task runner
 
-  gulp.task('gulp:watch', done => {
-      gulp.watch(config.paths.src, gulp.series('gulp:compile')).on('change', browserSync.reload);
-
-      done();
+  gulp.task('gulp:watch', callback => {
+      gulp.watch(config.paths.src, () => {
+        runSequence(
+            'gulp:compile',
+            browserSync.reload,
+            callback
+        );
+    });
   });
 
   // -- task serve
 
-  gulp.task('gulp:serve', gulp.series('gulp:compile', gulp.parallel('runServer', 'gulp:watch')));
+  gulp.task('gulp:serve', (callback) => {
+      runSequence(
+          'gulp:compile',
+          [
+              'runServer', 'gulp:watch'
+          ],
+          callback
+      );
+  });
 
   // -- task default
 
