@@ -103,7 +103,7 @@
       done();
   });
 
-  // -- Run Server setups
+  // -- Run Server and reload setup
 
   gulp.task('runServer', () => {
       return browserSync.init({
@@ -113,6 +113,11 @@
           port: arg.port ? Number(arg.port) : 8080,
           open: true
       });
+  });
+
+  gulp.task('reload', done => {
+      browserSync.reload();
+      done();
   });
 
 
@@ -146,8 +151,7 @@
           header(config.header.main, {
               package: package
           }),
-          gulp.dest(config.paths.styles.output),
-          browserSync.stream()
+          gulp.dest(config.paths.styles.output)
       ]);
 
       done();
@@ -188,8 +192,7 @@
           .pipe(header(config.header.main, {
               package: package
           }))
-          .pipe(gulp.dest(config.paths.scripts.output))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(config.paths.scripts.output));
 
   });
 
@@ -214,8 +217,7 @@
                   max_preserve_newlines: 1
               }
           }))
-          .pipe(gulp.dest(config.paths.build))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(config.paths.build));
 
   });
 
@@ -269,14 +271,14 @@
 
   // -- watch task runner
 
-  gulp.task('gulp:watch', callback => {
-      gulp.watch(config.paths.src, () => {
-        runSequence(
-            'gulp:compile',
-            browserSync.reload,
-            callback
-        );
-    });
+  gulp.task('gulp:watch', () => {
+      gulp.watch(config.paths.src, callback => {
+          runSequence(
+              'gulp:compile',
+              'reload',
+              callback
+          );
+      });
   });
 
   // -- task serve
