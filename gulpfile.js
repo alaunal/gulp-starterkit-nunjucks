@@ -16,14 +16,9 @@
   // -- General 
   const gulp = require('gulp');
   const del = require('del');
-  const fs = require('fs');
   const header = require('gulp-header');
-  const changed = require('gulp-changed');
-  const newer = require('gulp-newer');
-  const concat = require('gulp-concat');
   const sourcemaps = require('gulp-sourcemaps');
   const noop = require('gulp-noop');
-  const debug = require('gulp-debug');
   const cache = require('gulp-cached');
   const pump = require('pump');
   const runSequence = require('gulp4-run-sequence');
@@ -159,7 +154,7 @@
 
   // -- Script js use rollup
 
-  gulp.task('scripts-compile', done => {
+  gulp.task('compile-scripts', done => {
 
       if (!config.settings.scripts) return done();
 
@@ -176,16 +171,13 @@
       return gulp.src(config.paths.scripts.dir + '*.js')
           .pipe(isProd ? noop() : sourcemaps.init())
           .pipe(plumber())
-          //   .pipe((isProd ? noop() : changed(config.paths.scripts.output, {
-          //       extension: '.js'
-          //   })))
           .pipe(rollup({
               plugins: rollupPugins
           }, {
               format: 'iife',
               name: 'scripts'
           }))
-          //   .pipe(babel())
+          .pipe(babel())
           .pipe(terser(isProd ? config.uglify.prod : config.uglify.dev))
           .pipe(strip())
           .pipe((isProd ? noop() : sourcemaps.write('./maps')))
@@ -251,7 +243,7 @@
       runSequence(
           'clear-cache',
           'compile-styles',
-          'scripts-compile',
+          'compile-scripts',
           'copy-static',
           'compile-html',
           callback

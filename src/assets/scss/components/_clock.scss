@@ -15,7 +15,7 @@
     }
 
     &__copyright {
-        font-size: 1rem;
+        font-size: rem(20px);
         font-family: $font-fm-thin;
         line-height: 1.5;
         color: var(--base-color-white100);
