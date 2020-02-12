@@ -68,6 +68,10 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 	$ npm install
 	```
 
+	```
+	$ npm install --global rollup
+	```
+
 	> if you have done the syntax above before, there is no need to do a step 3 process. but if you are not sure then just do it for check updated.
 
 4.  **Serve or deploy**
