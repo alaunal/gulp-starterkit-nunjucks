@@ -12,7 +12,7 @@ const DATA = {
     "base": {
         "static": "static/",
         "revid": makeId(8),
-        "title": "GULP TEMPLATEING | gojek site",
+        "title": "GULP TEMPLATEING | default site",
         "metaDescript": ""
     }
 };

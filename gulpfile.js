@@ -13,7 +13,7 @@
    *
    */
 
-  // -- General 
+  // -- General
   const gulp = require('gulp');
   const del = require('del');
   const header = require('gulp-header');
@@ -27,7 +27,6 @@
   // -- config
   const package = require('./package.json');
   const config = require('./gulpfile.config');
-  const siteConf = require('./site.config');
 
   // -- Styles
   const sass = require('gulp-sass');
@@ -123,11 +122,8 @@
       if (!config.settings.styles) return done();
 
       pump([
-          gulp.src([config.paths.styles.input]),
+          gulp.src(config.paths.styles.input),
           plumber(),
-          //   (isProd ? noop() : changed(config.paths.styles.output, {
-          //       extension: '.css'
-          //   })),
           (isProd ? noop() : sourcemaps.init()),
           sass({
               outputStyle: 'compressed'
@@ -141,7 +137,13 @@
               })
           ]),
           csso(),
-          cleanCss(),
+          cleanCss(cleanCss({
+              level: {
+                  1: {
+                      specialComments: 0
+                  }
+              }
+          })),
           (isProd ? noop() : sourcemaps.write('./maps')),
           header(config.header.main, {
               package: package
@@ -168,7 +170,7 @@
           }),
       ];
 
-      return gulp.src(config.paths.scripts.dir + '*.js')
+      return gulp.src(config.paths.scripts.input)
           .pipe(isProd ? noop() : sourcemaps.init())
           .pipe(plumber())
           .pipe(rollup({
@@ -188,11 +190,13 @@
 
   });
 
-  // -- Nunjucks html template compile 
+  // -- Nunjucks html template compile
 
   gulp.task('compile-html', done => {
 
       if (!config.settings.copy) return done();
+
+      const siteConf = require(config.paths.public.data);
 
       return gulp.src(config.paths.public.input)
           .pipe(plumber())
