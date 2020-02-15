@@ -1,0 +1,16 @@
+{
+  "name": "GULP - starter kit",
+  "short_name": "GULP - starter kit",
+  "background_color": "#3E4EB8",
+  "theme_color": "#2F3BA2",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/index.html?homescreen=1",
+  "icons": [
+    {
+      "src": "static/images/icon-man.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

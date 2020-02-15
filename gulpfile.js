@@ -194,7 +194,7 @@
 
   gulp.task('compile-html', done => {
 
-      if (!config.settings.copy) return done();
+      if (!config.settings.public) return done();
 
       const siteConf = require(config.paths.public.data);
 
@@ -220,8 +220,19 @@
   // -- Copy of static when of changed
 
   gulp.task('copy-static', () => {
+      if (!config.settings.copy) return done();
+
       return gulp.src(config.paths.libs + '**/*')
           .pipe(gulp.dest(config.paths.output));
+  });
+
+
+  gulp.task("service-worker", function() {
+
+      if (!config.settings.pwa) return done();
+
+      return gulp.src(config.paths.pwa.dir + '**/*')
+          .pipe(gulp.dest(config.paths.build));
   });
 
   // -- Merge of static build to Portal Project
@@ -249,6 +260,7 @@
           'compile-styles',
           'compile-scripts',
           'copy-static',
+          'service-worker',
           'compile-html',
           callback
       );

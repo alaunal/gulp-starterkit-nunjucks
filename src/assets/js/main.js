@@ -25,33 +25,29 @@ window.addEventListener('load', () => {
 
 
     function showTime() {
-        let time = new Date();
-        let h = time.getHours().toString(); 
-        let m = time.getMinutes().toString(); 
-        let s = time.getSeconds().toString();
-        const body = document.querySelector('.c-clock');
 
-        if (h.length < 2) {
-            h = '0' + h;
+        let date = new Date();
+        let h = date.getHours(); // 0 - 23
+        let m = date.getMinutes(); // 0 - 59
+        let s = date.getSeconds(); // 0 - 59
+        let session = "AM";
+
+        if (h == 0) {
+            h = 12;
         }
 
-        if (m.length < 2) {
-            s = '0' + s;
+        if (h > 12) {
+            h = h - 12;
+            session = "PM";
         }
 
-        if (s.length < 2) {
-            s = '0' + s;
-        }
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
 
-        let clockStr = h + ":" + m + ":" + s;
-        let colorStr = '#' + h + m + s;
-
-
-        document.getElementById("js-clock").innerText = clockStr;
-        document.getElementById("js-clock").textContent = clockStr;
-        document.getElementById("js-hex").innerText = colorStr;
-        document.getElementById("js-hex").textContent = colorStr;
-        body.style.backgroundColor = colorStr;
+        let time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("js-clock").innerText = time;
+        document.getElementById("js-clock").textContent = time;
 
         setTimeout(showTime, 1000);
 

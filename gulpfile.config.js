@@ -18,6 +18,8 @@ const SETTINGS = {
     scripts: true,
     styles: true,
     copy: true,
+    public: true,
+    pwa: true,
     reload: true
 };
 
@@ -83,7 +85,10 @@ const PATHS = {
         ],
         output: BUILD,
         data: './site.config',
-    }
+    },
+    pwa: {
+      dir: ASSETS + 'pwa/'
+  },
 };
 
 
