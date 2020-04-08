@@ -1,7 +1,13 @@
+{% set title = "HomePage- Gulp Template" %}
 {% extends "templates/layouts/container.html" %}
+
 
 {% block content %}
   <div class="c-home">
 
   </div>
 {% endblock %}
+
+{% block base_scripts %}
+<script src="{{ base.static }}js/main.js" defer></script>
+{% endblock base_scripts %}

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>{{ base.title }}</title>
+    <title>{{ title if title else base.title }}</title>
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -52,7 +52,7 @@
 
     <!-- Main Script -->
     {% block base_scripts %}
-    <script src="{{ base.static }}js/main.js" defer></script>
+    <!-- <script src="{{ base.static }}js/main.js" defer></script> -->
     {% endblock base_scripts %}
     <!-- Extra Script -->
     {% block extra_scripts %}{% endblock extra_scripts %}
