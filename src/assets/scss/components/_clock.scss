@@ -1,24 +1,38 @@
 .c-clock {
-    position: relative;
-    background-color: var(--base-color-black80);
-    transition: background-color 0.5s ease;
+  position: relative;
+  background-image: linear-gradient(92deg, #f35626 0%, #feab3a 100%);
+  animation: hue 60s infinite linear;
 
-    &__content {
-        height: 100vh;
-    }
+  &__content {
+    height: 100vh;
+  }
 
-    &__time {
-        font-size: 9.5rem;
-        font-family: $font-fm-thin;
-        line-height: 1.5;
-        color: var(--base-color-white100);
-    }
+  &__time {
+    font-size: 9.5rem;
+    font-family: $font-fm-thin;
+    line-height: 1.5;
+    color: var(--base-color-white100);
+  }
 
-    &__copyright {
-        font-size: rem(20px);
-        font-family: $font-fm-thin;
-        line-height: 1.5;
-        color: var(--base-color-white100);
-        text-align: center;
-    }
+  &__copyright {
+    font-size: rem(20px);
+    font-family: $font-fm-thin;
+    line-height: 1.5;
+    color: var(--base-color-white100);
+    text-align: center;
+  }
+}
+
+/*-----------------------------------*\
+  $ANIMATIONS
+\*-----------------------------------*/
+
+@keyframes hue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(-360deg);
+  }
 }

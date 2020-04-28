@@ -18,6 +18,8 @@ const SETTINGS = {
     scripts: true,
     styles: true,
     copy: true,
+    public: true,
+    pwa: true,
     reload: true
 };
 
@@ -28,6 +30,7 @@ const BANNERS = {
         ' <%= package.name %> v<%= package.version %>' +
         ' | (c) ' + new Date().getFullYear() + ' <%= package.author.name %>' +
         ' | <%= package.license %> License' +
+        ' | author <%= package.author %>' +
         ' */\n'
 };
 
@@ -67,12 +70,12 @@ const PATHS = {
     src: SRC,
     styles: {
         dir: ASSETS + 'scss/',
-        input: ASSETS + 'scss/**/*.scss',
+        input: ASSETS + 'scss/*.scss',
         output: STATIC + 'css/'
     },
     scripts: {
         dir: ASSETS + 'js/',
-        input: ASSETS + 'js/**/*.js',
+        input: ASSETS + 'js/*.js',
         output: STATIC + 'js/'
     },
     public: {
@@ -81,8 +84,11 @@ const PATHS = {
             '!' + HTML + 'templates/**'
         ],
         output: BUILD,
-        data: './data.config.js',
-    }
+        data: './site.config',
+    },
+    pwa: {
+      dir: ASSETS + 'pwa/'
+  },
 };
 
 

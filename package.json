@@ -4,10 +4,10 @@
   "description": "GULP STARTER KIT TEMPLATES",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp gulp:compile",
+    "dev": "gulp gulp",
     "build": "NODE_ENV=production gulp",
     "merge-dev": "gulp gulp:merge",
-    "merge-build": "NODE_ENV=production  gulp gulp:merge",
+    "merge-build": "NODE_ENV=production gulp gulp:merge",
     "serve": "gulp gulp:serve",
     "watch": "gulp gulp:watch"
   },
