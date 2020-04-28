@@ -2,6 +2,7 @@
 @import "base/variables";
 @import "base/mixins";
 @import "base/fonts";
+@import "base/icons";
 @import "base/reset";
 @import "base/typography";
 @import "base/modifier";
@@ -12,9 +13,10 @@
 
 
 // -- OBJECTS OF STYLES
-
+@import "objects/layout";
 
 // -- COMPONENTS OF STYLES
+@import "components/button";
 @import "components/home";
 @import "components/clock";
 

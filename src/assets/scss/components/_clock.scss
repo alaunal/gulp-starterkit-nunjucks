@@ -4,7 +4,12 @@
   animation: hue 60s infinite linear;
 
   &__content {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 1rem 0;
+
+    @include media-breakpoint-down(xs) {
+      padding: 1rem;
+    }
   }
 
   &__time {
@@ -12,6 +17,12 @@
     font-family: $font-fm-thin;
     line-height: 1.5;
     color: var(--base-color-white100);
+    text-align: center;
+
+
+    @include media-breakpoint-down(xs) {
+      font-size: 3rem;
+    }
   }
 
   &__copyright {
@@ -20,6 +31,10 @@
     line-height: 1.5;
     color: var(--base-color-white100);
     text-align: center;
+
+    @include media-breakpoint-down(xs) {
+      font-size: rem(14px);
+    }
   }
 }
 
