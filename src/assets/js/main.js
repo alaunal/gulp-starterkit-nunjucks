@@ -1,29 +1,38 @@
-// import axios from 'axios';
+import LazyLoad from "vanilla-lazyload";
+import Typed from 'typed.js';
+
+
+
 
 window.addEventListener('load', () => {
 
-  console.log('here main js loaded!');
+  // -- LazyLoad Init
+  new LazyLoad({
+    elements_selector: '.lazy'
+  }).update();
 
 
-    // const api = 'http://www.colr.org/json/color/random';
-    // const body = document.querySelector('body');
+  // -- typed Init
+  const typedInit = (element = '.typed', option) => {
+    new Typed(element, option);
+  };
 
-    // function randomColor() {
-    //     axios.get(api).then(res => {
-    //         let color = res.data.colors[0].hex;
 
-    //         if (!color) {
-    //             console.error('Random color could not be fetched. 1');
-    //         }
+  // -- Hero init typed
+  let optHero = {
+    strings: [
+      'Front-end Web Developer',
+      'Web Designer',
+      'Traveller',
+      'Talk less do more!'
+    ],
+    typeSpeed: 50,
+    backSpeed: 20,
+    backDelay: 2000,
+    startDelay: 1000,
+    loop: true
+  };
 
-    //         color = '#' + color;
-
-    //         body.style.backgroundColor = color;
-    //     }).catch(() => console.error('Random color could not be fetched. 2'));
-    // }
-
-    // randomColor();
-
-    // setInterval(randomColor, 8000);
+  typedInit('.typedHero', optHero);
 
 });

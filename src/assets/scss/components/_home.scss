@@ -42,7 +42,7 @@
     z-index: 2;
 
     h1 {
-      font-size: rem(72px);
+      font-size: rem(104px);
       line-height: 1.35;
       font-family: $font-fm-thin;
       color: var(--base-color-white100);
@@ -56,16 +56,18 @@
       }
     }
 
-    h3 {
-      font-size: rem(20px);
+    span {
+      font-size: rem(36px);
       line-height: 1.4;
       font-family: $font-fm-light;
       color: var(--base-color-white100);
       margin: 0;
       letter-spacing: 5px;
+      min-height: 32px;
+      display: inline-block;
 
       @include media-breakpoint-down(xs) {
-        font-size: rem(12px);
+        font-size: rem(16px);
       }
     }
 

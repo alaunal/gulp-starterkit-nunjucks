@@ -69,10 +69,8 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "jquery": "^3.4.1",
     "lodash": "^4.17.15",
-    "parsleyjs": "^2.9.2",
-    "slick-carousel": "^1.8.1",
-    "vanilla-lazyload": "^12.4.0"
+    "typed.js": "^2.0.11",
+    "vanilla-lazyload": "^15.1.1"
   }
 }
