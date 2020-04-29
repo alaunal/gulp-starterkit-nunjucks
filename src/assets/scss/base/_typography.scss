@@ -193,3 +193,8 @@ sub {
 	word-wrap: break-word;
 	hyphens: auto;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
