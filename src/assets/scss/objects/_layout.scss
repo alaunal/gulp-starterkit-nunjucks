@@ -1,20 +1,20 @@
 // -- section setup
 .o-section {
-  margin-bottom: rem(56px);
+  margin-bottom: rem(72px);
 
   &--sm {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
 
-    @media screen and (min-width: 769px) {
-      margin-bottom: 3.5rem;
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 1.5rem;
     }
   }
 
   &--lg {
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
 
-    @media screen and (min-width: 769px) {
-      margin-bottom: 8rem;
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 4rem;
     }
   }
 
@@ -22,16 +22,16 @@
     margin-bottom: 0;
   }
 
-  @media screen and (min-width: 769px) {
-    margin-bottom: rem(80px);
+  @include media-breakpoint-down(xs) {
+    margin-bottom: rem(56px);
   }
 }
 
 // -- main wrapper
 .o-main-wrapper {
-  margin-top: rem(55px);
+  margin-top: rem(84px);
 
-  @media screen and (min-width: 769px) {
-    margin-top: rem(82px);
+  @include media-breakpoint-down(xs) {
+    margin-top: rem(56px);
   }
 }

@@ -1,0 +1,144 @@
+.c-docs {
+  position: relative;
+  box-sizing: border-box;
+
+  &__header {
+    position: relative;
+    height: rem(84px);
+    overflow: hidden;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--base-color-white100);
+
+    .nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0;
+        padding: 0;
+        font-size: rem(18px);
+        color: var(--base-color-black80);
+        line-height: normal;
+        display: inline-block;
+
+        a {
+          font-size: inherit;
+          transition: all 0.25s ease-in-out;
+          text-decoration: none;
+          color: inherit;
+
+          &:hover {
+            color: var(--base-color-primary80);
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+
+        @include media-breakpoint-down(xs) {
+          font-size: rem(14px);
+        }
+      }
+    }
+
+    .brand {
+      margin: 0;
+      font-size: rem(28px);
+      font-family: $font-fm-light;
+
+      span {
+        font-size: inherit;
+        color: var(--base-color-primary100);
+        font-family: $font-fm-bold;
+      }
+
+      @include media-breakpoint-down(xs) {
+        font-size: rem(16px);
+      }
+
+    }
+
+    @include media-breakpoint-down(xs) {
+      margin-top: rem(56px);
+    }
+  }
+
+  &__menu {
+    position: sticky;
+    top: calc(84px + 32px);
+    z-index: 1;
+    width: 100%;
+    border-right: .5px solid var(--base-color-black30);
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        font-size: rem(16px);
+        padding-left: rem(14px);
+        padding-bottom: .5rem;
+        padding-top: .5rem;
+        display: block;
+        margin: 0;
+
+        &.label {
+          font-size: rem(18px);
+          padding-left: 0;
+          font-family: $font-fm-medium;
+          color: var(--base-color-black60);
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+          font-size: inherit;
+          transition: all 0.25s ease-in-out;
+
+          &:hover {
+            color: var(--base-color-primary80);
+          }
+        }
+      }
+    }
+  }
+
+  &__heading {
+    font-size: rem(36px);
+    font-family: $font-fm-medium;
+    color: var(--base-color-black70);
+    line-height: 1.4;
+  }
+
+  &__headline {
+    font-size: rem(28px);
+    font-family: $font-fm-light;
+    color: var(--base-color-black80);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  &__color-card {
+    width: 180px;
+    height: 208px;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    border-radius: 4px;
+    z-index: -1;
+
+    .body {
+      position: absolute;
+      width: 100%;
+      bottom: 4px;
+      background: var(--base-color-white100);
+      padding: 16px;
+    }
+  }
+}

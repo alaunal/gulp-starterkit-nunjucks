@@ -176,8 +176,7 @@
           .pipe(rollup({
               plugins: rollupPugins
           }, {
-              format: 'iife',
-              name: 'scripts'
+              format: 'cjs'
           }))
           .pipe(babel())
           .pipe(terser(isProd ? config.uglify.prod : config.uglify.dev))

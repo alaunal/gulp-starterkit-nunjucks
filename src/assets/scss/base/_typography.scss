@@ -9,7 +9,8 @@ body {
   -moz-osx-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  letter-spacing: 1px;
+  letter-spacing: normal;
+  line-height: 1.5;
 }
 
 // Headers
@@ -31,7 +32,7 @@ h6 {
 h1 {
   font-size: rem($header-size);
   margin-bottom: $header-margin;
-  font-family: $font-fm-bold;
+  font-family: $font-fm-black;
   color: var(--base-color-black100);
 
   em {
@@ -40,9 +41,9 @@ h1 {
 }
 
 h2 {
-  font-size: rem($header-size - 12px);
+  font-size: rem($header-size - 8px);
   margin-bottom: $header-margin / 1.2;
-  font-family: $font-fm-bold;
+  font-family: $font-fm-black;
   color: var(--base-color-black100);
 
   em {
@@ -51,7 +52,7 @@ h2 {
 }
 
 h3 {
-  font-size: rem($header-size - 24px);
+  font-size: rem($header-size - 12px);
   margin-bottom: $header-margin / 1.5;
   font-family: $font-fm-bold;
   color: $header-color;
@@ -62,7 +63,7 @@ h3 {
 }
 
 h4 {
-  font-size: rem($header-size - 32px);
+  font-size: rem($header-size - 20px);
   margin-bottom: $header-margin / 1.7;
   font-family: $font-fm-bold;
   color: $header-color;
@@ -73,7 +74,7 @@ h4 {
 }
 
 h5 {
-  font-size: rem($header-size - 40px);
+  font-size: rem($header-size - 24px);
   margin-bottom: $header-margin / 1.8;
   font-family: $font-fm-bold;
   color: $header-color;
@@ -84,7 +85,7 @@ h5 {
 }
 
 h6 {
-  font-size: rem($header-size - 44px);
+  font-size: rem($header-size - 30px);
   margin-bottom: $header-margin / 2;
   font-family: $font-fm-bold;
   color: $header-color;
@@ -96,6 +97,7 @@ h6 {
 
 // Paragraphs
 p {
+  margin-top: 0;
   margin-bottom: $paragraph-margin;
   font-size: rem($paragraph-size);
   line-height: $paragraph-line-height;
@@ -132,7 +134,7 @@ ol {
     margin-top: 10px;
     line-height: $paragraph-line-height;
     color: $paragraph-color;
-    padding-left: .5rem;
+    padding-left: 0.5rem;
   }
 
   ul,
@@ -189,12 +191,39 @@ sub {
 
 // https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/
 .hyphenate {
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+pre {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  tab-size: 4;
+  overflow: auto;
+  padding: 24px;
+  border: 0 solid #e5e5e5;
+  border-radius: 0;
+  background: #f8f8f8;
+  font-family: monospace;
+}
+
+:not(pre) > code,
+:not(pre) > kbd,
+:not(pre) > samp {
+  font-size: 14px;
+  color: #f0506e;
+  white-space: nowrap;
+  padding: 2px 6px;
+  background: #f8f8f8;
+  font-family: monospace;
 }

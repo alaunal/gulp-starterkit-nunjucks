@@ -2,8 +2,6 @@ import LazyLoad from "vanilla-lazyload";
 import Typed from 'typed.js';
 
 
-
-
 window.addEventListener('load', () => {
 
   // -- LazyLoad Init

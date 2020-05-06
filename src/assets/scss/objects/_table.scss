@@ -1,0 +1,38 @@
+.o-table {
+  width: 100% ;
+  margin: 0 ;
+  margin-bottom: 1rem;
+  color: var(--base-color-black80);
+  border-collapse: collapse;
+  border-bottom: 1px solid var(--base-color-black50);
+
+  thead {
+    td,
+    th {
+      padding: 1rem rem(14px);
+      vertical-align: middle;
+      border-bottom: 1px solid var(--base-color-black50);
+      font-size: 1rem;
+      font-family: $font-fm-bold;
+      background-color: var(--base-color-black20);
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: var(-color-white100);
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--base-color-black30);
+      }
+
+      th,
+      td {
+        vertical-align: middle;
+        padding: 1rem rem(14px);
+        font-family: $font-fm-base;
+        font-size: 1rem;
+      }
+    }
+  }
+}
