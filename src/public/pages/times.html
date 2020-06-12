@@ -1,0 +1,24 @@
+{% set title = "Time Analog Style" %}
+{% extends "templates/layouts/container.html" %}
+
+{% block content %}
+<div class="c-time">
+  <div class="c-time__analog">
+    <div class="c-time__hour">
+      <div class="hr" id="hr"></div>
+    </div>
+    <div class="c-time__min">
+      <div class="mn" id="mn"></div>
+    </div>
+    <div class="c-time__sec">
+      <div class="sc" id="sc"></div>
+    </div>
+  </div>
+
+  <div class="c-time__toggle" id="toggle"></div>
+</div>
+{% endblock %}
+
+{% block base_scripts %}
+<script src="{{ base.static }}js/time.js" defer></script>
+{% endblock base_scripts %}
