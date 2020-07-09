@@ -20,5 +20,9 @@
 {% endblock %}
 
 {% block base_scripts %}
-<script src="{{ base.static }}js/time.js" defer></script>
+<!-- modern browsers -->
+<script type="module" src="{{ base.static }}js/time.js" defer></script>
+
+<!-- old stuff -->
+<script nomodule src="{{ base.static }}nomodule/time.js" defer></script>
 {% endblock base_scripts %}

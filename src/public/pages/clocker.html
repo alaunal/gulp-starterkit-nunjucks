@@ -15,5 +15,9 @@
 
 
 {% block base_scripts %}
-<script src="{{ base.static }}js/clocker.js" defer></script>
+<!-- modern browsers -->
+<script type="module" src="{{ base.static }}js/clocker.js" defer></script>
+
+<!-- old stuff -->
+<script nomodule src="{{ base.static }}nomodule/clocker.js" defer></script>
 {% endblock base_scripts %}

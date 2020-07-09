@@ -40,16 +40,23 @@ const UGLIFY = {
     prod: {
         compress: {
             drop_console: true,
-            drop_debugger: true
+            drop_debugger: true,
+            side_effects: false
         }
     },
     dev: {
         compress: {
             drop_console: false,
-            drop_debugger: false
+            drop_debugger: false,
+            side_effects: false
         }
     }
 };
+
+
+// -- type format script or rollupjs | option: [es, cjs, amd, system]
+
+const FORMAT_SCRIPT = 'es';
 
 
 // -- path config | setup of path src or dist file
@@ -75,8 +82,9 @@ const PATHS = {
     },
     scripts: {
         dir: ASSETS + 'js/',
-        input: ASSETS + 'js/*.js',
-        output: STATIC + 'js/'
+        input: ASSETS + 'js/',
+        output: STATIC + 'js/',
+        outputNomodule: STATIC + 'js/nomodule'
     },
     public: {
         input: [
@@ -98,5 +106,6 @@ module.exports = {
     paths: PATHS,
     uglify: UGLIFY,
     header: BANNERS,
-    settings: SETTINGS
+    settings: SETTINGS,
+    formatScript: FORMAT_SCRIPT
 };

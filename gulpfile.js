@@ -23,6 +23,7 @@
   const pump = require('pump');
   const runSequence = require('gulp4-run-sequence');
   const directoryExists = require('directory-exists');
+  const gulpRun = require('gulp-run-command').default;
 
   // -- config
   const package = require('./package.json');
@@ -43,23 +44,12 @@
   const data = require('gulp-data');
 
   // -- scripts
-  const terser = require('gulp-terser');
   const plumber = require('gulp-plumber');
-  const babel = require('gulp-babel');
-  const strip = require('gulp-strip-comments');
-  const rollup = require('gulp-better-rollup');
-  const rollupBabel = require('rollup-plugin-babel');
-  const rollupResolve = require('@rollup/plugin-node-resolve');
-  const rollupCommonjs = require('@rollup/plugin-commonjs');
 
 
   // ---------------------------------------------------
   // -- FUNCTION OF HELPERS
   // ---------------------------------------------------
-
-  // -- Environment configuration.
-
-  const isProd = process.env.NODE_ENV === 'production';
 
 
   // -- fetch command line arguments
@@ -81,6 +71,11 @@
       return arg;
   })(process.argv);
 
+
+  // -- Environment configuration.
+
+  const isProd = arg.production === true;
+
   // ---------------------------------------------------
   // -- GULP TASKS
   // ---------------------------------------------------
@@ -93,7 +88,6 @@
 
   gulp.task('clear-cache', done => {
       cache.caches = {};
-
       done();
   });
 
@@ -105,7 +99,7 @@
               baseDir: ['build']
           },
           port: arg.port ? Number(arg.port) : 8080,
-          open: true
+          open: false
       });
   });
 
@@ -156,38 +150,7 @@
 
   // -- Script js use rollup
 
-  gulp.task('compile-scripts', done => {
-
-      if (!config.settings.scripts) return done();
-
-      const rollupPugins = [
-          rollupResolve({
-              browser: true,
-          }),
-          rollupCommonjs(),
-          rollupBabel({
-              exclude: 'node_modules/**'
-          }),
-      ];
-
-      return gulp.src(config.paths.scripts.input)
-          .pipe(isProd ? noop() : sourcemaps.init())
-          .pipe(plumber())
-          .pipe(rollup({
-              plugins: rollupPugins
-          }, {
-              format: 'cjs'
-          }))
-          .pipe(babel())
-          .pipe(terser(isProd ? config.uglify.prod : config.uglify.dev))
-          .pipe(strip())
-          .pipe((isProd ? noop() : sourcemaps.write('./maps')))
-          .pipe(header(config.header.main, {
-              package: package
-          }))
-          .pipe(gulp.dest(config.paths.scripts.output));
-
-  });
+  gulp.task('compile-scripts', isProd ? gulpRun('rollup -c ') : gulpRun('rollup -c rollup.config-dev.js'));
 
   // -- Nunjucks html template compile
 

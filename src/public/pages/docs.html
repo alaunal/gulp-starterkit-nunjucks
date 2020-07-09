@@ -381,5 +381,9 @@
 {% endblock %}
 
 {% block base_scripts %}
-<script src="{{ base.static }}js/docs.js" defer></script>
+<!-- modern browsers -->
+<script type="module" src="{{ base.static }}js/docs.js" defer></script>
+
+<!-- old stuff -->
+<script nomodule src="{{ base.static }}nomodule/docs.js" defer></script>
 {% endblock base_scripts %}

@@ -20,7 +20,7 @@
 
   tbody {
     tr {
-      background-color: var(-color-white100);
+      background-color: var(--color-white100);
 
       &:not(:last-child) {
         border-bottom: 1px solid var(--base-color-black30);

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp gulp",
-    "build": "NODE_ENV=production gulp",
+    "build": "gulp --production",
     "merge-dev": "gulp gulp:merge",
-    "merge-build": "NODE_ENV=production gulp gulp:merge",
+    "merge-build": "gulp gulp:merge --production",
     "serve": "gulp gulp:serve",
     "watch": "gulp gulp:watch"
   },
@@ -23,14 +23,18 @@
   "author": "a.kauniyyah <a.kauniyyah@go-jek.com> | WEBTEAM",
   "license": "ISC",
   "browserslist": [
-    "last 2 versions",
-    "> 0.25%"
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
   ],
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-strip": "^1.3.3",
+    "@rollup/stream": "^1.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
@@ -54,14 +58,14 @@
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
+    "gulp-run-command": "0.0.10",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-strip-comments": "^2.5.2",
-    "gulp-terser": "^1.2.0",
     "gulp4-run-sequence": "^1.0.0",
     "pump": "^3.0.0",
-    "rollup": "^1.29.1",
-    "rollup-plugin-babel": "^4.3.3"
+    "rollup": "^1.32.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^6.1.0"
   },
   "engines": {
     "node": ">= 10.x",

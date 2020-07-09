@@ -42,12 +42,12 @@ $font-colection: (
   medium: 'Roboto-Medium',
 ) !default;
 
-$font-fm-base: 'Roboto-Regular', Arial, sans-serir;
-$font-fm-bold: 'Roboto-Bold', Arial, sans-serir;
-$font-fm-black: 'Roboto-Black', Arial, sans-serir;
-$font-fm-medium: 'Roboto-Medium', Arial, sans-serir;
-$font-fm-light: 'Roboto-Light', Arial, sans-serir;
-$font-fm-thin: 'Roboto-Thin', Arial, sans-serir;
+$font-fm-base: 'Roboto-Regular', sans-serir;
+$font-fm-bold: 'Roboto-Bold', sans-serir;
+$font-fm-black: 'Roboto-Black', sans-serir;
+$font-fm-medium: 'Roboto-Medium', sans-serir;
+$font-fm-light: 'Roboto-Light', sans-serir;
+$font-fm-thin: 'Roboto-Thin', sans-serir;
 
 $paragraph-color: var(--base-color-black80);
 $paragraph-size: 16px;
