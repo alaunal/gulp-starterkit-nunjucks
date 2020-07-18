@@ -150,7 +150,7 @@
 
   // -- Script js use rollup
 
-  gulp.task('compile-scripts', isProd ? gulpRun('rollup -c ') : gulpRun('rollup -c rollup.config-dev.js'));
+  gulp.task('compile-scripts', isProd ? gulpRun('rollup -c --environment production') : gulpRun('rollup -c'));
 
   // -- Nunjucks html template compile
 

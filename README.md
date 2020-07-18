@@ -8,7 +8,7 @@
 
 This **WEB UIKIT** provides a simple way of setting up a modern web development environment. Here is a list of the current features:
 
--  [**gulp-better-rollup**](https://www.npmjs.com/package/gulp-better-rollup) A Gulp plugin for Rollup ES6 Bundler.
+-  [**rollup.js**](https://rollupjs.org/guide/en/) a module bundler for JavaScript
 -  [**GULP 4**](https://gulpjs.com/) Automate and enhance your workflow.
 -  [**Nunjucks**](https://mozilla.github.io/nunjucks/) A rich and powerful templating language for JavaScript.
 -  [**ES2015 Babel**](https://babeljs.io/) transpiler that allows you writing JS Code in ES2015/ES6 style.
@@ -51,10 +51,13 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 			├── gulp.config.js
 			├── data.config.json
 			├── .editorconfig
+			├── .babelrc
 			├── .jshintrc
 			├── .jsbeautifyrc
 			├── package.json
 			├── path.config.dump
+			├── rollup.config.js
+			├── site.config.js
 			├── README.md
 	```
 
@@ -118,7 +121,7 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 		```
 
 		for production `env`
-		
+
 		```
 		$ yarn merge-build
 		```
