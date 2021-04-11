@@ -2,8 +2,8 @@
    *
    * A simple Gulp 4 Starter Kit
    *
-   * @author A.kauniyyah <a.kauniyyah@go-jek.com>
-   * @copyright 2019 A.kauniyyah | Sr. Front-end Web developer
+   * @author A.kauniyyah <alaunalkauniyyah3@gmail.com>
+   * @copyright 2019 A.kauniyyah | Front-end Web developer
    *
    * ________________________________________________________________________________
    *
@@ -16,10 +16,11 @@
   // -- General
   const gulp = require('gulp');
   const del = require('del');
+  const fs = require('fs');
   const header = require('gulp-header');
   const sourcemaps = require('gulp-sourcemaps');
   const noop = require('gulp-noop');
-  const cache = require('gulp-cached');
+  const plumber = require('gulp-plumber');
   const pump = require('pump');
   const runSequence = require('gulp4-run-sequence');
   const directoryExists = require('directory-exists');
@@ -44,7 +45,14 @@
   const data = require('gulp-data');
 
   // -- scripts
-  const plumber = require('gulp-plumber');
+
+  // -- Scripts rollup.js
+  const { rollup } = require('rollup');
+  const rollupBabel = require('rollup-plugin-babel');
+  const rollupResolve = require('@rollup/plugin-node-resolve');
+  const rollupCommonjs = require('@rollup/plugin-commonjs');
+  const { terser } = require('rollup-plugin-terser');
+  const rollupCleanup = require('rollup-plugin-cleanup');
 
 
   // ---------------------------------------------------
@@ -83,13 +91,6 @@
   // -- clean of build dir
 
   gulp.task('clean', () => del(['./build']));
-
-  // -- clean of cache
-
-  gulp.task('clear-cache', done => {
-      cache.caches = {};
-      done();
-  });
 
   // -- Run Server and reload setup
 
@@ -150,7 +151,64 @@
 
   // -- Script js use rollup
 
-  gulp.task('compile-scripts', isProd ? gulpRun('rollup -c --environment production') : gulpRun('rollup -c'));
+  gulp.task('compile-scripts', done => {
+    if (!config.settings.scripts) return done();
+
+    const inputFile = () => {
+      const dir = config.paths.scripts.dir;
+      const rawFiles = fs.readdirSync(dir);
+      let inputFile = [];
+
+
+      rawFiles.forEach(function(file) {
+          file = dir + '' + file;
+          let stat = fs.statSync(file);
+
+          if (stat && !stat.isDirectory()) {
+              inputFile.push(file);
+          }
+      });
+
+      return inputFile;
+    };
+
+    const rollupSet = rollup({
+      input: inputFile(),
+      plugins: [
+          rollupResolve({
+              browser: true,
+          }),
+          rollupCommonjs(),
+          rollupBabel({
+              exclude: 'node_modules/**'
+          }),
+          rollupCleanup({
+              comments: 'none'
+          })
+      ]
+    });
+
+    const outputSet = {
+      chunkFileNames: 'module-[name].js',
+      sourcemap: isProd ? false : true,
+      plugins: isProd ? [terser(config.uglify.prod)] : [terser(config.uglify.dev)]
+    };
+
+    return (
+      rollupSet.then(bundle => {
+          return bundle.write(Object.assign({
+              dir: config.paths.scripts.output,
+              format: 'es'
+          }, outputSet));
+      }),
+      rollupSet.then(bundle => {
+          return bundle.write(Object.assign({
+              dir: config.paths.scripts.outputNomodule,
+              format: 'system'
+          }, outputSet));
+      })
+    );
+  });
 
   // -- Nunjucks html template compile
 
@@ -218,7 +276,6 @@
 
   gulp.task('gulp:compile', function(callback) {
       runSequence(
-          'clear-cache',
           'compile-styles',
           'compile-scripts',
           'copy-static',

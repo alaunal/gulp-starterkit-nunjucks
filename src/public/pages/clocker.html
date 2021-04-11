@@ -1,7 +1,7 @@
 {% extends "templates/layouts/container.html" %}
 
 {% block content %}
-  <div class="c-clock">
+  <div class="c-clock" data-module="cloker">
     <div class="container">
       <div class="row align-items-center justify-content-center c-clock__content">
         <div class="col-auto">
@@ -16,8 +16,8 @@
 
 {% block base_scripts %}
 <!-- modern browsers -->
-<script type="module" src="{{ base.static }}js/clocker.js" defer></script>
+<script type="module" src="{{ base.static }}js/main.js" defer></script>
 
 <!-- old stuff -->
-<script nomodule src="{{ base.static }}nomodule/clocker.js" defer></script>
+<script nomodule src="{{ base.static }}nomodule/main.js" defer></script>
 {% endblock base_scripts %}

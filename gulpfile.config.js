@@ -37,20 +37,18 @@ const BANNERS = {
 // -- Uglify setup | setup of dev or prod env build
 
 const UGLIFY = {
-    prod: {
-        compress: {
-            drop_console: true,
-            drop_debugger: true,
-            side_effects: false
-        }
-    },
-    dev: {
-        compress: {
-            drop_console: false,
-            drop_debugger: false,
-            side_effects: false
-        }
-    }
+  prod: {
+      compress: {
+          drop_console: true,
+          drop_debugger: true
+      }
+  },
+  dev: {
+      compress: {
+          drop_console: false,
+          drop_debugger: false
+      }
+  }
 };
 
 
@@ -84,7 +82,7 @@ const PATHS = {
         dir: ASSETS + 'js/',
         input: ASSETS + 'js/',
         output: STATIC + 'js/',
-        outputNomodule: STATIC + 'js/nomodule'
+        outputNomodule: STATIC + 'js/nomodule/'
     },
     public: {
         input: [

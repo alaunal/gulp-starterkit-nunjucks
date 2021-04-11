@@ -1,0 +1,101 @@
+.o-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  justify-content: center;
+  min-width: 120px;
+  padding: 4px 24px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: var(--base-color-black70);
+  color: var(--base-color-white100);
+  font-size: rem(16px);
+  line-height: normal;
+  font-family: $font-fm-base;
+  text-decoration: none;
+  border-radius: 50px;
+
+  &.primary {
+    background-color: var(--base-color-primary100);
+    color: var(--base-color-white100);
+
+    &:hover {
+      background-color: var(--base-color-primary80);
+    }
+  }
+
+  &.secondary {
+    background-color: var(--base-color-blue100);
+    color: var(--base-color-white100);
+
+    &:hover {
+      background-color: var(--base-color-blue80);
+    }
+  }
+
+  &.danger {
+    background-color: var(--base-color-red100);
+    color: var(--base-color-white100);
+
+    &:hover {
+      background-color: var(--base-color-red80);
+    }
+  }
+
+  &.warning {
+    background-color: var(--base-color-yellow100);
+    color: var(--base-color-black80);
+
+    &:hover {
+      background-color: var(--base-color-yellow80);
+    }
+  }
+
+  &.success {
+    background-color: var(--base-color-green100);
+    color: var(--base-color-white100);
+
+    &:hover {
+      background-color: var(--base-color-green80);
+    }
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  &.sm {
+    height: 40px;
+    min-width: 100px;
+    font-size: rem(12px);
+    line-height: normal;
+    font-family: $font-fm-base;
+    padding: 4px 16px;
+  }
+
+  &.lg {
+    height: 56px;
+    min-width: 200px;
+    font-size: rem(20px);
+    line-height: normal;
+    font-family: $font-fm-medium;
+    padding: 8px 32px;
+  }
+
+  &.link {
+    background-color: transparent;
+    color: var(--base-color-black80);
+    height: auto;
+    padding: 0;
+
+    &.hover {
+      text-decoration: underline;
+    }
+  }
+
+  &:not(:first-child) {
+    margin-left: 8px;
+  }
+}

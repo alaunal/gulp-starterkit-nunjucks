@@ -12,8 +12,8 @@ const DATA = {
     "base": {
         "static": "static/",
         "revid": makeId(8),
-        "title": "GULP TEMPLATEING | default site",
-        "metaDescript": ""
+        "title": "GULP Boilerplate Nunjucks | akcode",
+        "metaDesc": "A HTML templates using gulp and Nunjucks - support dynamic import with rollup JS"
     }
 };
 

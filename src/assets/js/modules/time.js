@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+const time = () => {
 
     const deg = 6;
     const toggle = document.querySelector('#toggle');
@@ -27,4 +27,6 @@ window.addEventListener('load', () => {
         console.log(ss);
 
     }, 1000);
-});
+};
+
+export default time;

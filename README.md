@@ -1,12 +1,12 @@
 
-# GULP STARTER-KIT
+# GULP Boilerplate Nunjucks
 
-**GULP STARTER-KIT** is a tool that we designed to make it easier for developers (especially Front-end Developers) to create and create user interfaces as outlined in the visual web form of the design that has been determined.
+**GULP Boilerplate Nunjucks** is a tool that we designed to make it easier for developers (especially Front-end Developers) to create and create user interfaces as outlined in the visual web form of the design that has been determined. [**Page Docs**](https://boilerplate-nunjucks.netlify.app/)
 
 
 ## Features
 
-This **WEB UIKIT** provides a simple way of setting up a modern web development environment. Here is a list of the current features:
+This **WEB Templates** provides a simple way of setting up a modern web development environment. Here is a list of the current features:
 
 -  [**rollup.js**](https://rollupjs.org/guide/en/) a module bundler for JavaScript
 -  [**GULP 4**](https://gulpjs.com/) Automate and enhance your workflow.
@@ -36,7 +36,7 @@ As a prerequisite it's assumed you have `npm` or `yarn` installed.
 
 1.  **Clone Repo**
 
-	Make sure you have a **GULP STARTER-KIT** clone repository.
+	Make sure you have a **GULP Boilerplate Nunjucks** clone repository.
 	```
 	git@github.com:alaunal/gulp-starter-kit.git
 	```

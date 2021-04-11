@@ -4,13 +4,14 @@
 
   &__header {
     position: relative;
-    height: rem(84px);
+    height: rem(72px);
     overflow: hidden;
     z-index: 99;
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: var(--base-color-white100);
+    background-color: var(--base-color-black20);
+    border-bottom: 1px solid var(--base-color-black30);
 
     .nav {
       list-style: none;
@@ -48,7 +49,7 @@
 
     .brand {
       margin: 0;
-      font-size: rem(28px);
+      font-size: rem(24px);
       font-family: $font-fm-light;
 
       span {
@@ -141,4 +142,64 @@
       padding: 16px;
     }
   }
+}
+
+.c-landing {
+  position: relative;
+
+  .title {
+    margin: 0;
+    font-family: $font-fm-medium;
+    text-align: center;
+
+    span {
+      font-size: inherit;
+      color: var(--base-color-primary100);
+      font-family: $font-fm-black;
+    }
+  }
+
+  .sub-title {
+    text-align: center;
+  }
+
+  .desc {
+    text-align: center;
+  }
+
+  .diver {
+    display: block;
+    width: 100%;
+    margin: 2rem 0;
+    border-top: 1px solid var(--base-color-black30);
+  }
+
+  .list-feature {
+    display: grid;
+    grid-gap: 20px;
+    gap: 20px;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+
+  .feature-title {
+    color: var(--base-color-black70);
+    margin-top: 8px;
+  }
+
+  .feature-desc {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .feature-cta {
+    font-size: 14px;
+    color: var(--base-color-blue100);
+  }
+}
+
+.c-footer {
+  position: relative;
+  height: 72px;
+  background-color: var(--base-color-primary100);
+  color: var(--base-color-white100);
 }

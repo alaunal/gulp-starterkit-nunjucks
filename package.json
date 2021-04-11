@@ -1,7 +1,7 @@
 {
   "name": "gulp-starter-kit",
   "version": "1.0.0",
-  "description": "GULP STARTER KIT TEMPLATES",
+  "description": "GULP STARTER KIT TEMPLATES - Nunjucks",
   "main": "index.js",
   "scripts": {
     "dev": "gulp",
@@ -17,6 +17,7 @@
     "templates",
     "sass",
     "javascript",
+    "nunjucks",
     "html",
     "browser-sync"
   ],
@@ -73,8 +74,6 @@
     "npm": ">= 6.0.0"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "lodash": "^4.17.15",
     "typed.js": "^2.0.11",
     "vanilla-lazyload": "^15.1.1"
   }

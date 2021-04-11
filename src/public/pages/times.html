@@ -2,7 +2,7 @@
 {% extends "templates/layouts/container.html" %}
 
 {% block content %}
-<div class="c-time">
+<div class="c-time" data-module="time">
   <div class="c-time__analog">
     <div class="c-time__hour">
       <div class="hr" id="hr"></div>
@@ -21,8 +21,8 @@
 
 {% block base_scripts %}
 <!-- modern browsers -->
-<script type="module" src="{{ base.static }}js/time.js" defer></script>
+<script type="module" src="{{ base.static }}js/main.js" defer></script>
 
 <!-- old stuff -->
-<script nomodule src="{{ base.static }}nomodule/time.js" defer></script>
+<script nomodule src="{{ base.static }}nomodule/main.js" defer></script>
 {% endblock base_scripts %}
