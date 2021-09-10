@@ -76,11 +76,13 @@ const PATHS = {
     styles: {
         dir: ASSETS + 'scss/',
         input: ASSETS + 'scss/*.scss',
-        output: STATIC + 'css/'
+        watch: ASSETS + 'scss/**/*.scss',
+        output: STATIC + 'css/',
     },
     scripts: {
         dir: ASSETS + 'js/',
         input: ASSETS + 'js/',
+        watch: ASSETS + 'js/**/*.js',
         output: STATIC + 'js/',
         outputNomodule: STATIC + 'js/nomodule/'
     },
@@ -89,6 +91,7 @@ const PATHS = {
             HTML + 'pages/**/*.html',
             '!' + HTML + 'templates/**'
         ],
+        watch: HTML + '**/*.html',
         output: BUILD,
         data: './site.config',
     },

@@ -24,7 +24,6 @@
   const pump = require('pump');
   const runSequence = require('gulp4-run-sequence');
   const directoryExists = require('directory-exists');
-  const gulpRun = require('gulp-run-command').default;
 
   // -- config
   const package = require('./package.json');
@@ -299,12 +298,37 @@
   // -- watch task runner
 
   gulp.task('gulp:watch', () => {
-      gulp.watch(config.paths.src, callback => {
+
+      gulp.watch(config.paths.scripts.watch, callback => {
           runSequence(
-              'gulp:compile',
+              'compile-scripts',
               'reload',
               callback
           );
+      });
+
+      gulp.watch(config.paths.styles.watch, callback => {
+        runSequence(
+            'compile-styles',
+            'reload',
+            callback
+        );
+      });
+
+      gulp.watch(config.paths.public.watch, callback => {
+        runSequence(
+            'compile-html',
+            'reload',
+            callback
+        );
+      });
+
+      gulp.watch(config.paths.libs + '**/*', callback => {
+        runSequence(
+            'copy-static',
+            'reload',
+            callback
+        );
       });
   });
 
